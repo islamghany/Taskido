@@ -1,0 +1,28 @@
+enum STATUS {
+  NOT_STARTED
+  COMPELETED
+  CANCELLED
+}
+
+type User{
+   id:ID! @id
+   email:String! @unique
+   name:String!
+   password:String!
+   resetPasswordLink:String
+   tasks:[Task]!
+}
+type Task {
+   id: ID! @id
+   title:String!
+   description:String
+   date:String!
+   status:STATUS @default(value:NOT_STARTED)
+   subject:String
+   favorites:Boolean @default(value:false)
+   createdAt: DateTime @createdAt
+   updatedAt: DateTime @updatedAt
+   user:User!
+}
+
+

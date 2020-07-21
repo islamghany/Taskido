@@ -1,0 +1,29 @@
+# import * from './generated/prisma.graphql'
+## it will import all using type and inputs like (Note);
+
+type SuccessMessage{
+	message:String
+}
+type User {
+   id:ID! 
+   email:String! 
+   name:String!   
+}
+type Mutation{
+	createTask(title: String!, description: String, date: String!, subject: String):Task
+    updateTask(id:ID!,title:String!,description:String!,status:String,date:String! ,subject:String):Task
+    deleteTask(id:ID!):Task
+    signup(email:String!,password:String!,name:String):SuccessMessage!
+    signin(email:String!,password:String!):User!
+    signout:SuccessMessage
+    forgetPassword(email:String!):SuccessMessage
+    resetPassword(newPassword:String!,resetPasswordLink:String!):SuccessMessage
+
+}
+type Query{
+	task(where:TaskWhereInput!):Task!
+	tasks(orderBy: TaskOrderByInput!,where: TaskWhereInput):[Task]!
+	currentUser:User
+    activateAccount(token:String!):SuccessMessage
+    isTokenTrue(token:String!):SuccessMessage
+}
